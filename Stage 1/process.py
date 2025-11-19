@@ -205,8 +205,8 @@ def save_labels_only(image_dir, mask_dir, save_path, out_shape=(128, 128)):
 
 if __name__ == '__main__':
     save_labels_only(
-        image_dir=r'D:\PhD\Prostate\Data\GSA\sliced_im',
-        mask_dir=r'D:\PhD\Prostate\Data\GSA\sliced_lb',
-        save_path=r"D:\PhD\Prostate\Data\GSA\new",
+        image_dir='sliced_im',
+        mask_dir='sliced_lb',
+        save_path="new",
         out_shape=(128, 128)
     )
