@@ -1,6 +1,6 @@
 % === Configuration ===
-input_folder = 'C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\pdac\300iter\outputs\recon';        % Folder containing input .png images
-output_folder = 'D:\PhD\Vote2Segment\pdac\300iter\alpha2700\wm\matlab';    % Folder to save output segmentations
+input_folder = 'recon';        % Folder containing input .png images
+output_folder = 'matlab';    % Folder to save output segmentations
 ext = '*.tif';                        % Change if using .jpg, .tif, etc.
 % Create output folder if it doesn't exist
 if ~exist(output_folder, 'dir')
@@ -33,3 +33,4 @@ for i = 1:length(image_files)
 end
 
 fprintf('Done processing %d files.\n', length(image_files));
+
