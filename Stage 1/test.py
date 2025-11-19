@@ -17,7 +17,7 @@ from utils.loss import *
 
 def test():
     device = torch.device('cuda')
-    test_set, num_image_channel =  DataGen(r'T:\Labs\QMI\CK Data\PDAC\ktrans\cropped\images_8bit', mode='test')  # r'D:\PhD\Prostate\Data\GSA\sliced_im'
+    test_set, num_image_channel =  DataGen('images_8bit', mode='test')  # r'D:\PhD\Prostate\Data\GSA\sliced_im'
 
     # Build the model
     model = Model(
@@ -27,11 +27,11 @@ def test():
         patches_per_image=8,
         patch_dim=5
     ).to(device)
-    model.load(r"C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\PDAC_ktrans\500iter\pdac_ktrans.pty", device=device)
+    model.load("pdac_ktrans.pty", device=device)
 
     loss_fn_recon = torch.nn.MSELoss()
     loss_fn_contrastive = ContrastiveLoss()
-    output_saver = OutputSaver(save_path=r"C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\PDAC_ktrans\500iter\outputs",
+    output_saver = OutputSaver(save_path="outputs",
                                random_seed=2)
 
     test_loss_recon, test_loss_contrastive, test_loss = 0, 0, 0
@@ -77,4 +77,5 @@ def test():
 
 if __name__ == '__main__':
     
+
         test()
