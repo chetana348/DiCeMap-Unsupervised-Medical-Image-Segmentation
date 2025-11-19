@@ -12,7 +12,7 @@ from model1 import *
 def train():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    training_data, validation_data, input_channels = DataGen(r'T:\Labs\QMI\CK Data\PDAC\ktrans\cropped\images_8bit', mode='train')
+    training_data, validation_data, input_channels = DataGen('images_8bit', mode='train')
     max_epochs=50
 
     # Initialize model and optimizer
@@ -78,7 +78,7 @@ def train():
         write_log_entry(
             f"Train [{epoch+1}/{max_epochs}] | l2 Loss: {train_metrics['l2']:.3f}, "
             f"Contrast: {train_metrics['contrast']:.3f}, Total: {train_metrics['total']:.3f}",
-            output_path=r'C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\pdac_ktrans\50iter\logs.txt',
+            output_path='logs.txt',
             display=False
         )
 
@@ -112,15 +112,15 @@ def train():
         write_log_entry(
             f"Validation [{epoch+1}/{max_epochs}] | l2 Loss: {val_metrics['l2']:.3f}, "
             f"Contrast: {val_metrics['contrast']:.3f}, Total: {val_metrics['total']:.3f}",
-            output_path=r'C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\pdac_ktrans\50iter\logs.txt',
+            output_path='logs.txt',
             display=False
         )
 
         # Save best model
         if val_metrics["total"] < best_val_total_loss:
             best_val_total_loss = val_metrics["total"]
-            model.save(r'C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\pdac_ktrans\50iter\pdac_ktrans.pty')
-            write_log_entry("Model weights successfully saved.", output_path=r'C:\Users\kris83\OneDrive - The Ohio State University Wexner Medical Center\OSU Files\QML\Vote2Segment\Stage 1\out\pdac_ktrans\50iter\logs.txt', display=False)
+            model.save('pdac_ktrans.pty')
+            write_log_entry("Model weights successfully saved.", output_path=r'logs.txt', display=False)
 
         tqdm.write(
             f"Epoch [{epoch+1}/{max_epochs}] | "
